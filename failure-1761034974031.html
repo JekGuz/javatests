@@ -1,0 +1,59 @@
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><link rel="stylesheet" href="/static/prism.css"><link rel="stylesheet" href="/static/style.css"><title>Visibility</title><script>function byid(id) 
+{
+    return document.getElementById(id);
+}
+
+function setStatus(txt)
+{
+    byid("opstatus").innerText = txt;
+}</script></head><body><nav class="navbar navbar-expand-lg navbar-light bg-light"><a class="navbar-brand" href="/">UITAP</a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse" id="navbarSupportedContent"><ul class="navbar-nav mr-auto"><li class="nav-item"><a class="nav-link" href="/home">Home</a></li><li class="nav-item"><a class="nav-link" href="/resources">Resources</a></li></ul></div></nav><section><div class="container"><h3>Visibility</h3><p>Checking if element is visible on screen may be a non trivial task. </p><ul><li>An element may be removed (simplest case),</li><li>it may have zero height or width,</li><li>it may be covered by another element,</li><li>it may be hidden using styles: opacity: 0, visibility: hidden, display: none,</li><li>or moved offscreen.</li></ul><h4>Scenario</h4><ul><li>Learn locators of all buttons.</li><li>In your testing scenario press Hide button.</li><li>Determine if other buttons visible or not.</li></ul><h4>Playground</h4><table width="100%" border="1"><tbody><tr><td width="25%"><button class="btn btn-primary" type="button" id="hideButton" onclick="HideButtons()">Hide</button></td><td width="25%"></td><td width="25%"><button class="btn btn-warning zerowidth" type="button" id="zeroWidthButton">Zero Width</button></td><td width="25%"><button class="btn btn-success" type="button" id="overlappedButton">Overlapped</button><div id="hidingLayer" style="position: absolute; background-color: white; width: 108px; height: 38px; left: 744.1px; top: 487px;"></div></td></tr><tr><td width="25%"><button class="btn btn-info" type="button" id="transparentButton" style="opacity: 0;">Opacity 0</button></td><td width="25%"><button class="btn btn-info" type="button" id="invisibleButton" style="visibility: hidden;">Visibility Hidden</button></td><td width="25%"><button class="btn btn-info" type="button" id="notdisplayedButton" style="display: none;">Display None</button></td><td width="25%"><button class="btn btn-info offscreen" type="button" id="offscreenButton">Offscreen</button></td></tr></tbody></table></div></section><script>function HideButtons()
+{
+    // Remove button
+    $("#removedButton").remove();
+
+    // Zero width button
+    $("#zeroWidthButton").addClass("zerowidth");
+
+    // Button overlapped with another element
+    $('#hidingLayer').css('position', 'absolute');
+    $('#hidingLayer').css('background-color', 'white');                
+    var gb = $('#overlappedButton');
+    var width = gb[0].clientWidth + 2;
+    var height = gb[0].clientHeight + 2;
+    $('#hidingLayer').css('width', width);
+    $('#hidingLayer').css('height', height);
+    var left = gb.position().left;
+    var top = gb.position().top;
+    $('#hidingLayer').css('left', left);
+    $('#hidingLayer').css('top', top);
+
+    // Styled hidden
+    $("#transparentButton").css("opacity", 0);
+    $("#invisibleButton").css("visibility", "hidden");
+    $("#notdisplayedButton").css("display", "none");
+    $("#offscreenButton").addClass("offscreen");
+}
+</script><div class="container">
+    <footer id="footer">
+        <div id="footer-content">
+            <div id="github">
+                <span></span>
+            </div>
+            <div id="fork">
+                <a href="https://github.com/inflectra/ui-test-automation-playground">Fork the website on GitHub</a>.
+            </div>
+        <div>Supported by <a href="https://www.inflectra.com/Rapise/">Rapise</a> test automation team. Copyright © 2020 <a href="https://www.inflectra.com/">Inflectra Corporation</a>.</div>
+        </div>
+        <div id="license">
+            This work is licensed under the <a rel="license" href="https://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a>.
+        </div>
+    </footer>
+</div>
+<script async="" defer="" src="https://buttons.github.io/buttons.js"></script>
+<script src="/static/prism.js"></script>
+
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body></html>
